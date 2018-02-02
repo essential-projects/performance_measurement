@@ -1,0 +1,19 @@
+{
+  "name": "@essential-projects/performance_measure",
+  "version": "1.0.0",
+  "description": "Tools for performance measurement",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/essential-projects/performance_measure.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/essential-projects/performance_measure/issues"
+  },
+  "homepage": "https://github.com/essential-projects/performance_measure#readme",
+  "dependencies": {
+    "@essential-projects/http": "^1.0.0-rc4",
+    "yargs": "^11.0.0"
+  }
+}
