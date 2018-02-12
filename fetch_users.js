@@ -12,10 +12,10 @@ const config = {
   route: `datastore/User`,
 };
 
-export async function fetchData() {
+async function fetchData() {
   const getOptions = {
     query: {
-      query: 'ALL',
+      limit: '"ALL"',
     }
   };
   const getResponse = await httpClient.get(`${config.host}/${config.route}`, getOptions);

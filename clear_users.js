@@ -1,5 +1,3 @@
-
-
 const http = require('@essential-projects/http');
 const yargs = require('yargs');
 
@@ -12,7 +10,7 @@ const config = {
   route: `datastore/User`,
 };
 
-export async function clearData() {
+async function clearData() {
   const getOptions = {
     query: {
       limit: "\"ALL\"",
