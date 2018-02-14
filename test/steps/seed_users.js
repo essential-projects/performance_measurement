@@ -16,13 +16,16 @@ const config = {
   }],
 };
 
-module.exports.seedData = async function() {
-  const startTime = process.hrtime();
-  for (let index = 0; index < config.seedingRepetition; index++) {
-    for (const data of config.seedingData) {
-      const seedReponse = await httpClient.post(`${config.host}/${config.route}`, data);
+module.exports = {
+  title: `seed ${config.seedingRepetition} users`,
+  method: async function() {
+    const startTime = process.hrtime();
+    for (let index = 0; index < config.seedingRepetition; index++) {
+      for (const data of config.seedingData) {
+        const seedReponse = await httpClient.post(`${config.host}/${config.route}`, data);
+      }
     }
-  }
 
-  return process.hrtime(startTime);
-}
+    return process.hrtime(startTime);
+  }
+};
