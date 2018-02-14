@@ -16,12 +16,13 @@ const config = {
   }],
 };
 
-async function seedData() {
+module.exports.seedData = async function() {
+  const startTime = process.hrtime();
   for (let index = 0; index < config.seedingRepetition; index++) {
     for (const data of config.seedingData) {
       const seedReponse = await httpClient.post(`${config.host}/${config.route}`, data);
     }
   }
-}
 
-seedData();
+  return process.hrtime(startTime);
+}

@@ -4,7 +4,8 @@
   "description": "Tools for performance measurement",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/essential-projects/performance_measure.git"
+    "url": "git+https://github.com/essential-projects/performance_measure.git",
+    "test": "mocha"
   },
   "author": "",
   "license": "MIT",
@@ -14,6 +15,7 @@
   "homepage": "https://github.com/essential-projects/performance_measure#readme",
   "dependencies": {
     "@essential-projects/http": "^1.0.0-rc4",
+    "mocha": "^5.0.1",
     "yargs": "^11.0.0"
   }
 }

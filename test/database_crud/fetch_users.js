@@ -10,17 +10,13 @@ const config = {
   route: `datastore/User`,
 };
 
-async function clearData() {
+module.exports.fetchData = async function() {
   const getOptions = {
     query: {
-      limit: "\"ALL\"",
-    },
+      limit: '"ALL"',
+    }
   };
+  const startTime = process.hrtime();
   const getResponse = await httpClient.get(`${config.host}/${config.route}`, getOptions);
-  const result = JSON.parse(getResponse.result);
-  for (const entry of result.data) {
-    const deleteResponse = await httpClient.delete(`${config.host}/${config.route}/${entry.id}`);
-  }
+  return process.hrtime(startTime);
 }
-
-clearData();
