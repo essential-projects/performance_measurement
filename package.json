@@ -4,7 +4,9 @@
   "description": "Tools for performance measurement",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/essential-projects/performance_measure.git",
+    "url": "git+https://github.com/essential-projects/performance_measure.git"
+  },
+  "scripts": {
     "test": "node test/test.js"
   },
   "author": "",
