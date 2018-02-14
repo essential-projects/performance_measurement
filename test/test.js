@@ -36,7 +36,9 @@ async function runTest(steps, executionCount = 5) {
       console.log(`    run ${exectionNumber+1}: ${results[exectionNumber][stepIndex]} ms`);
     }
 
-    stepResults.sort();
+    stepResults.sort((a, b) => {
+      return a - b;
+    });
     console.log(`    ${stepResults[0]} ms | ${median(stepResults)} ms | ${stepResults[stepResults.length - 1]} ms`);
   }
 }
