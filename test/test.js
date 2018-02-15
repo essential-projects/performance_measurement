@@ -71,7 +71,7 @@ async function runTests(steps, executionCount = 5) {
   printTestResults(steps, results);
 }
 
-const describe = (title, callback) => {
+function describe(title, callback) {
   console.log(title)
   callback();
 }
