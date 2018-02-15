@@ -8,11 +8,11 @@ function hrTimeToMilliseconds(hrTime) {
 
 function median(sortedValues) {
   const center = Math.floor(sortedValues.length/2);
-  if(sortedValues.length % 2 !== 0) {
-    return sortedValues[center];
+  const lengthIsEven = sortedValues.length % 2 === 0;
+  if(lengthIsEven) {
+    return (sortedValues[center-1] + sortedValues[center]) / 2.0;
   }
-
-  return (sortedValues[center-1] + sortedValues[center]) / 2.0;
+  return sortedValues[center];
 }
 
 async function runTest(steps) {
