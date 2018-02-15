@@ -6,6 +6,9 @@
     "type": "git",
     "url": "git+https://github.com/essential-projects/performance_measure.git"
   },
+  "scripts": {
+    "test": "node test/test.js"
+  },
   "author": "",
   "license": "MIT",
   "bugs": {
