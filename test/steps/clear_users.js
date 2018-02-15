@@ -15,7 +15,7 @@ module.exports = {
   method: async () => {
     const getOptions = {
       query: {
-        limit: "\"ALL\"",
+        limit: '"ALL"',
       },
     };
     const getResponse = await httpClient.get(`${config.host}/${config.route}`, getOptions);

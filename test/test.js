@@ -11,36 +11,64 @@ function median(sortedValues) {
   if(sortedValues.length % 2 !== 0) {
     return sortedValues[center];
   }
-    
+
   return (sortedValues[center-1] + sortedValues[center]) / 2.0;
 }
 
-async function runTest(steps, executionCount = 5) {
-  const results = [];
-  for (let exectionNumber = 0; exectionNumber < executionCount; exectionNumber++) {
-    const result = []
-    for (let stepIndex = 0; stepIndex < steps.length; stepIndex++) {
-      result[stepIndex] = hrTimeToMilliseconds(await steps[stepIndex].method())
-    }
-    results.push(result);
+async function runTest(steps) {
+  const result = [];
+  for (const step of steps) {
+    result.push(hrTimeToMilliseconds(await step.method()));
   }
-  
-  for (let stepIndex = 0; stepIndex < steps.length; stepIndex++) {
+
+  return result;
+}
+
+function getStepRunsFromTestResults(testResults, stepIndex) {
+  return testResults.map((testRun) => {
+    return testRun[stepIndex];
+  });
+}
+
+function printStepRuns(stepResults) {
+  stepResults.forEach((stepResult, exectionNumber) => {
+    console.log(`    run ${exectionNumber+1}: ${stepResult} ms`);
+  })
+}
+
+function printStepRunsSummary(stepResults) {
+  const sortedResults = stepResults.slice(0).sort((a, b) => {
+    return a - b;
+  });
+
+  const fastestRun = stepResults[0];
+  const medianResult = median(stepResults);
+  const slowestRun = stepResults[stepResults.length - 1];
+
+  console.log(`    ${fastestRun} ms | ${medianResult} ms | ${slowestRun} ms`);
+}
+
+function printTestResults(testSteps, testResults) {
+  testSteps.forEach((testStep, stepIndex) => {
     if (stepIndex > 0) {
       console.log()
     }
-    console.log(`  ${steps[stepIndex].title}`)
-    const stepResults = [];
-    for (let exectionNumber = 0; exectionNumber < executionCount; exectionNumber++) {
-      stepResults.push(results[exectionNumber][stepIndex]);
-      console.log(`    run ${exectionNumber+1}: ${results[exectionNumber][stepIndex]} ms`);
-    }
 
-    stepResults.sort((a, b) => {
-      return a - b;
-    });
-    console.log(`    ${stepResults[0]} ms | ${median(stepResults)} ms | ${stepResults[stepResults.length - 1]} ms`);
+    console.log(`  ${testStep.title}`)
+
+    const stepResults = getStepRunsFromTestResults(testResults, stepIndex);
+    printStepRuns(stepResults);
+    printStepRunsSummary(stepResults)
+  });
+}
+
+async function runTests(steps, executionCount = 5) {
+  const results = [];
+  for (let exectionNumber = 0; exectionNumber < executionCount; exectionNumber++) {
+    results.push(await runTest(steps));
   }
+
+  printTestResults(steps, results);
 }
 
 const describe = (title, callback) => {
@@ -49,7 +77,7 @@ const describe = (title, callback) => {
 }
 
 describe('database', () => {
-  return runTest([
+  return runTests([
     testSteps.seed_users,
     testSteps.fetch_users,
     testSteps.clear_users
