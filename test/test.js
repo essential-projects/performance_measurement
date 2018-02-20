@@ -76,7 +76,7 @@ function describe(title, callback) {
   callback();
 }
 
-describe('database', () => {
+describe('datastore endpoint test', () => {
   return runTests([
     testSteps.seed_users,
     testSteps.fetch_users,
