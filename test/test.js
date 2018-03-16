@@ -1,5 +1,5 @@
 const assert = require('assert');
-const testSteps = require('./steps/index'); 
+const testSteps = require('./steps/index');
 
 function hrTimeToMilliseconds(hrTime) {
   const nanoSeconds = hrTime[0] * 1e9 + hrTime[1];
