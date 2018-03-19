@@ -41,9 +41,9 @@ function printStepRunsSummary(stepResults) {
     return a - b;
   });
 
-  const fastestRun = stepResults[0];
-  const medianResult = median(stepResults);
-  const slowestRun = stepResults[stepResults.length - 1];
+  const fastestRun = sortedResults[0];
+  const medianResult = median(sortedResults);
+  const slowestRun = sortedResults[stepResults.length - 1];
 
   console.log(`    ${fastestRun} ms | ${medianResult} ms | ${slowestRun} ms`);
 }
